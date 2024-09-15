@@ -1,0 +1,37 @@
+<!-- links/templates/base.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Meu Site{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'links/styles.css' %}">
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>Olá, {{ user.username }}!</p>
+        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+        </form>
+        <nav>
+            <a href="{% url 'home' %}">Início</a> |
+            <a href="{% url 'editar_pagina_produto' %}">Editar minha página de produtos</a>
+        </nav>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Registrar</a></p>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+
