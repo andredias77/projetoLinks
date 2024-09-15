@@ -1,0 +1,35 @@
+<!-- links/templates/minhas_paginas.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Minhas Páginas</h2>
+    {% if paginas %}
+        <div class="row">
+            {% for pagina in paginas %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pagina.titulo }}</h5>
+                            <p class="card-text">{{ pagina.descricao|truncatewords:15 }}</p>
+                            <a href="{% url 'visualizar_pagina_produto' pagina.id %}" class="btn btn-primary">
+                                Ver Página
+                            </a>
+                            <a href="{% url 'editar_pagina_produto' pagina_id=pagina.id %}" class="btn btn-secondary">
+                                Editar Página
+                            </a>
+                            <!-- Botão para gerar QR Code -->
+                            <a href="{% url 'gerar_qrcode' pagina.id %}" class="btn btn-info" target="_blank">
+                                Gerar QR Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Você ainda não criou nenhuma página.</p>
+    {% endif %}
+</div>
+{% endblock %}

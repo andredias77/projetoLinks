@@ -1,37 +1,68 @@
 <!-- links/templates/base.html -->
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
     <title>{% block title %}Meu Site{% endblock %}</title>
+    <!-- Bootstrap CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'links/styles.css' %}">
 </head>
 <body>
-    {% if user.is_authenticated %}
-        <p>Olá, {{ user.username }}!</p>
-        <form method="post" action="{% url 'logout' %}" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit">Sair</button>
-        </form>
-        <nav>
-            <a href="{% url 'home' %}">Início</a> |
-            <a href="{% url 'editar_pagina_produto' %}">Editar minha página de produtos</a>
-        </nav>
-    {% else %}
-        <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Registrar</a></p>
-    {% endif %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">Meu Site</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'minhas_paginas' %}">Minhas Páginas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'criar_pagina_produto' %}">Criar Nova Página</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link nav-link" style="padding: 0;">Sair</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Registrar</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    {% if messages %}
-        <ul class="messages">
+    <!-- Mensagens -->
+    <div class="container mt-3">
+        {% if messages %}
             {% for message in messages %}
-                <li>{{ message }}</li>
+                <div class="alert alert-info" role="alert">
+                    {{ message }}
+                </div>
             {% endfor %}
-        </ul>
-    {% endif %}
+        {% endif %}
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        <!-- Conteúdo específico de cada página -->
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
