@@ -1,0 +1,24 @@
+<!-- links/templates/home.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center mt-4">
+    <h1 class="display-4">Bem-vindo(a) ao nosso site!</h1>
+    {% if user.is_authenticated %}
+        <p class="lead">Olá, {{ user.username }}!</p>
+        <p>
+            <a href="{% url 'minhas_paginas' %}" class="btn btn-primary btn-lg">Ver Minhas Páginas</a>
+            <a href="{% url 'criar_pagina_produto' %}" class="btn btn-success btn-lg">Criar Nova Página de Produtos</a>
+        </p>
+    {% else %}
+        <p class="lead">Você não está logado.</p>
+        <p>
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-success btn-lg">Registrar</a>
+        </p>
+    {% endif %}
+</div>
+{% endblock %}

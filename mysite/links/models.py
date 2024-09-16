@@ -26,14 +26,16 @@ class PaginaProduto(models.Model):
     titulo = models.CharField("Título da Página", max_length=255)
     descricao = models.TextField("Descrição", blank=True, null=True)
     criador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    imagem_assinatura = models.ImageField(upload_to='assinaturas/', blank=True, null=True)  # Campo para a imagem
 
     def __str__(self):
         return self.titulo
     
 class Link(models.Model):
-    pagina = models.ForeignKey(PaginaProduto, on_delete=models.CASCADE, related_name='links')
-    nome_produto = models.CharField("Nome do Produto", max_length=255)
-    url = models.URLField("URL do Produto")
+    nome_produto = models.CharField(max_length=255)
+    url = models.URLField()  # URL do produto Amazon
+    imagem_url = models.URLField(blank=True, null=True)  # URL da imagem do produto (preenchido automaticamente)
+    pagina = models.ForeignKey('PaginaProduto', related_name='links', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome_produto

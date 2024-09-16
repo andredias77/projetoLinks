@@ -1,0 +1,14 @@
+<!-- links/templates/criar_pagina_produto.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Criar Página de Produtos{% endblock %}
+
+{% block content %}
+<h1>Criar Página de Produtos</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Criar Página</button>
+</form>
+{% endblock %}

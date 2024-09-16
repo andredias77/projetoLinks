@@ -1,0 +1,29 @@
+<!-- links/templates/editar_pagina_produto.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Editar Página: {{ pagina.titulo }}{% endblock %}
+
+{% block content %}
+<h1>Editar Página: {{ pagina.titulo }}</h1>
+
+<h2>Adicionar Novo Link</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Adicionar Link</button>
+</form>
+
+<h2>Links Adicionados</h2>
+<ul>
+    {% for link in links %}
+        <li>
+            <strong>{{ link.nome_produto }}</strong> - 
+            <a href="{{ link.url }}" target="_blank">Ver Produto</a>
+            - <a href="{% url 'excluir_link' link_id=link.id %}">Excluir</a>
+        </li>
+    {% empty %}
+        <li>Nenhum link adicionado ainda.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

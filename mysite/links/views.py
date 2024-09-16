@@ -11,6 +11,8 @@ import qrcode
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from .models import PaginaProduto
+import re
+
 
 def register(request):
     if request.method == "POST":
@@ -29,7 +31,7 @@ def home(request):
 @login_required
 def criar_pagina_produto(request):
     if request.method == 'POST':
-        form = PaginaProdutoForm(request.POST)
+        form = PaginaProdutoForm(request.POST, request.FILES)
         if form.is_valid():
             pagina = form.save(commit=False)
             pagina.criador = request.user
@@ -39,6 +41,8 @@ def criar_pagina_produto(request):
         form = PaginaProdutoForm()
     return render(request, 'criar_pagina_produto.html', {'form': form})
 
+
+@login_required
 def editar_pagina_produto(request, pagina_id):
     pagina = get_object_or_404(PaginaProduto, id=pagina_id, criador=request.user)
 
@@ -46,6 +50,7 @@ def editar_pagina_produto(request, pagina_id):
         form = LinkForm(request.POST)
         if form.is_valid():
             link = form.save(commit=False)
+            # Não haverá mais a necessidade de buscar detalhes de produtos pela API
             link.pagina = pagina
             link.save()
             return redirect('editar_pagina_produto', pagina_id=pagina.id)
@@ -53,7 +58,8 @@ def editar_pagina_produto(request, pagina_id):
         form = LinkForm()
 
     links = pagina.links.all()
-    return render(request, 'editar_pagina_produto.html', {'pagina': pagina, 'form': form, 'links': links})
+    return render(request, 'editar_pagina_produto.html', {'form': form, 'links': links, 'pagina': pagina})
+
 
 # links/views.py
 
@@ -70,12 +76,12 @@ def minhas_paginas(request):
 @login_required
 def excluir_pagina_produto(request, pagina_id):
     pagina = get_object_or_404(PaginaProduto, id=pagina_id, criador=request.user)
+
     if request.method == 'POST':
         pagina.delete()
-        messages.success(request, 'Página excluída com sucesso.')
         return redirect('minhas_paginas')
-    return render(request, 'confirmar_exclusao_pagina.html', {'pagina': pagina})
 
+    return render(request, 'confirmar_exclusao_pagina.html', {'pagina': pagina})
 
 @login_required
 def excluir_link(request, link_id):
@@ -116,3 +122,11 @@ def gerar_qrcode(request, pagina_id):
     response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
     return response
+
+def extrair_asin(url):
+    # Exemplo de URL: https://www.amazon.com.br/dp/B08XJG8MQM/
+    match = re.search(r'/dp/([A-Z0-9]{10})', url)
+    if match:
+        return match.group(1)
+    else:
+        return None

@@ -5,12 +5,13 @@
 {% block title %}Confirmar Exclusão{% endblock %}
 
 {% block content %}
-<h2>Confirmar Exclusão</h2>
-<p>Você tem certeza de que deseja excluir a página "{{ pagina.titulo }}"?</p>
+<div class="container mt-4">
+    <h2>Tem certeza de que deseja excluir a página "{{ pagina.titulo }}"?</h2>
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Sim, excluir</button>
-    <a href="{% url 'minhas_paginas' %}">Cancelar</a>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a href="{% url 'minhas_paginas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
 {% endblock %}

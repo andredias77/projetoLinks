@@ -1,0 +1,30 @@
+# Arquivos/Diretórios a serem ignorados
+
+# Ambiente virtual
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Banco de dados
+db.sqlite3
+
+# Configurações locais
+*.env
+
+# Arquivos de migração
+**/migrations/*
+!**/migrations/__init__.py
+
+# Arquivos estáticos gerados
+staticfiles/
+
+# Arquivos de cache
+*.log
+
+# Chave secreta do Django (se estiver em settings.py)
+mysite/settings.py

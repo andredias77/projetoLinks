@@ -11,19 +11,28 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Adicionar Link</button>
+    <button type="submit" class="btn btn-primary">Adicionar Link</button>
 </form>
+<br>
 
 <h2>Links Adicionados</h2>
 <ul>
     {% for link in links %}
-        <li>
-            <strong>{{ link.nome_produto }}</strong> - 
-            <a href="{{ link.url }}" target="_blank">Ver Produto</a>
-            - <a href="{% url 'excluir_link' link_id=link.id %}">Excluir</a>
-        </li>
+    <li class="media mb-4 d-flex align-items-center">
+        <div class="media-body">
+            <strong>{{ link.nome_produto }}</strong> - <a href="{{ link.url }}" target="_blank">Ver Produto</a>
+        </div>
+        {% if link.imagem_url %}
+            <img src="{{ link.imagem_url }}" alt="{{ link.nome_produto }}" class="ml-3" style="width: 50px; height: auto;">
+        {% endif %}
+        <!-- Botão para excluir o link -->
+        <form method="post" action="{% url 'excluir_link' link.id %}" style="margin-left: 20px;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </form>
+    </li>
     {% empty %}
-        <li>Nenhum link adicionado ainda.</li>
+    <li>Nenhum link adicionado ainda.</li>
     {% endfor %}
 </ul>
 {% endblock %}
