@@ -24,7 +24,7 @@ class AmazonLinkForm(forms.ModelForm):
 class PaginaProdutoForm(forms.ModelForm):
     class Meta:
         model = PaginaProduto
-        fields = ['titulo', 'imagem_assinatura']
+        fields = ['titulo']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
         }
