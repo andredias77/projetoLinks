@@ -10,16 +10,17 @@
 
     <div class="row">
         {% for pagina in paginas %}
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">{{ pagina.titulo }}</h5>
                     <p class="card-text">{{ pagina.descricao }}</p>
-                    <a href="{% url 'visualizar_pagina_produto' pagina.id %}" class="btn btn-primary">Ver Página</a>
-                    <a href="{% url 'editar_pagina_produto' pagina.id %}" class="btn btn-secondary">Editar Página</a>
-                    <a href="{% url 'gerar_qrcode' pagina.id %}" class="btn btn-info">Gerar QR Code</a>
-                    <!-- Botão de excluir -->
-                    <a href="{% url 'excluir_pagina_produto' pagina.id %}" class="btn btn-danger mt-3">Excluir Página</a>
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <a href="{% url 'visualizar_pagina_produto' pagina.id %}" class="btn btn-primary mb-2">Ver Página</a>
+                        <a href="{% url 'editar_pagina_produto' pagina.id %}" class="btn btn-secondary mb-2">Editar Página</a>
+                        <a href="{% url 'gerar_qrcode' pagina.id %}" class="btn btn-info mb-2">Gerar QR Code</a>
+                        <a href="{% url 'excluir_pagina_produto' pagina.id %}" class="btn btn-danger mb-2">Excluir Página</a>
+                    </div>
                 </div>
             </div>
         </div>
