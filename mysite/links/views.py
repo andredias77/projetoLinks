@@ -118,9 +118,13 @@ def gerar_qrcode(request, pagina_id):
     # Criar a imagem do QR Code
     img = qr.make_image(fill='black', back_color='white')
 
-    # Retornar a imagem como resposta HTTP
+    # Retornar a imagem como resposta HTTP com cabeçalho para download
     response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
+    
+    # Cabeçalho para forçar o download
+    response['Content-Disposition'] = f'attachment; filename="qrcode_pagina_{pagina_id}.png"'
+    
     return response
 
 def extrair_asin(url):

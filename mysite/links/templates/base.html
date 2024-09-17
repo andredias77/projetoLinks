@@ -8,50 +8,76 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Ajusta o espaçamento da navbar */
         .navbar {
             margin-bottom: 20px;
         }
+
+        /* Remove o espaçamento em excesso na parte superior */
         .container {
-            padding-top: 0px; /* Ajuste este valor para diminuir o espaço */
+            padding-top: 20px;
         }
+
+        /* Personalização de botões */
         .btn-custom {
             background-color: #007bff;
             color: white;
         }
+
         .btn-custom:hover {
             background-color: #0056b3;
+        }
+
+        /* Ajusta o espaçamento entre os itens do menu de navegação */
+        .navbar-nav .nav-item {
+            margin-left: 15px;
+        }
+
+        /* Centraliza o conteúdo da página */
+        .center-content {
+            margin-top: 50px;
+        }
+
+        /* Estilização personalizada para títulos */
+        h2 {
+            color: #343a40;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Meu Site</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'minhas_paginas' %}">Minhas Páginas</a>
+                </li>
+                <li class="nav-item">
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link btn btn-link" style="color: #ccc;">Sair</button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Registrar</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Meu Site</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'minhas_paginas' %}">Minhas Páginas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Sair</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">Registrar</a>
-            </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
-
-<div class="container">
+<div class="container center-content">
     {% block content %}
     {% endblock %}
 </div>

@@ -3,7 +3,7 @@
 {% block title %}Página de Produtos: {{ pagina.titulo }}{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-0"> <!-- Alterado de mt-4 para mt-1 para reduzir o espaço -->
     <h2>{{ pagina.titulo }}</h2>
     <br>
 
@@ -24,15 +24,3 @@
     </ul>
 </div>
 {% endblock %}
-
-<h2>{{ pagina.titulo }}</h2>
-
-{% if pagina.imagem_assinatura %}
-    <img src="{{ pagina.imagem_assinatura.url }}" alt="Assinatura" style="width: 150px; height: auto;">
-{% endif %}
-
-<form method="post" enctype="multipart/form-data"></form>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Criar Página</button>
-</form>
