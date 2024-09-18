@@ -1,6 +1,7 @@
 <!-- links/templates/home.html -->
 
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Página Inicial{% endblock %}
 
@@ -21,5 +22,9 @@
         </p>
     {% endif %}
 </div>
+
+<!-- Imagem para dispositivos móveis -->
+<div class="mobile-bottom-image">
+    <img src="{% static 'images/background5.jpg' %}">
 {% endblock %}
 

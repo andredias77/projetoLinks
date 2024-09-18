@@ -152,3 +152,112 @@ button.button-text {
 button.button-text:hover {
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 768px) {
+    /* Ajustar a navbar */
+    .navbar {
+        height: auto;
+        padding: 10px;
+    }
+
+    /* Ajustar imagens laterais */
+    .lateral-image {
+        display: none; /* Esconde as imagens laterais em dispositivos móveis */
+    }
+
+    /* Ajustar o contêiner da página */
+    .page-container {
+        flex-direction: column; /* Alinha o conteúdo em coluna */
+    }
+
+    /* Ajustar o contêiner de conteúdo */
+    .content-container {
+        margin: 0 10px; /* Adiciona margem nas laterais */
+    }
+
+    /* Ajustar o posicionamento dos botões no topo */
+    .top-buttons {
+        position: static;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .button-text {
+        font-size: 16px;
+        padding: 5px 10px;
+    }
+
+    /* Ajustar títulos */
+    h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    /* Ajustar o jumbotron ou contêiner principal */
+    .jumbotron {
+        padding: 1rem;
+    }
+
+    /* Qualquer outro ajuste necessário */
+    /* Exemplo: ajustar tamanho de fontes, margens, etc. */
+    body {
+        font-size: 14px;
+    }
+}
+
+.mobile-bottom-image {
+    display: none;
+}
+
+/* Exibe a imagem apenas em telas menores que 768px */
+@media only screen and (max-width: 768px) {
+    .mobile-bottom-image {
+        display: block;
+        text-align: center; /* Centraliza a imagem horizontalmente */
+        position: fixed;    /* Fixa a imagem na posição */
+        bottom: 0;          /* Alinha na parte inferior */
+        left: 0;
+        width: 100%;        /* Garante que ocupe toda a largura */
+        z-index: 1000;      /* Garante que fique acima de outros elementos */
+        background-color: white; /* Opcional: fundo branco para destacar */
+    }
+
+    .mobile-bottom-image img {
+        width: 100%;        /* A imagem ocupa a largura total */
+        height: 15vh;       /* Define a altura como 20% da altura da viewport */
+        object-fit: cover;  /* Garante que a imagem preencha o contêiner sem "encolher" */
+        object-position: center;  /* Centraliza a imagem dentro do contêiner */
+    }
+
+    /* Adiciona espaço no final da página para não ocultar o conteúdo */
+    body {
+        padding-bottom: 20vh; /* Espaço abaixo do conteúdo, correspondente à altura da imagem */
+    }
+
+    /* Espaçamento responsivo entre os botões e a imagem inferior */
+    .button-container {
+        margin-bottom: 1vh; /* Espaço entre o último botão e a imagem (5% da altura da viewport) */
+    }
+}
+
+
+/* Estilos específicos para dispositivos móveis */
+@media only screen and (max-width: 768px) {
+    .media {
+        display: flex;
+        justify-content: space-between; /* Garante que o nome do produto e o link fiquem nos extremos */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    .media-body h5 {
+        margin-right: auto; /* Garante que o título ocupe o espaço disponível */
+    }
+
+    .media-body a {
+        white-space: nowrap; /* Garante que o texto "Ver Produto" não seja quebrado */
+    }
+
+    .img-thumbnail {
+        margin-left: 15px; /* Adiciona um espaçamento entre o produto e a imagem */
+    }
+}
