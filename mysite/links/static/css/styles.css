@@ -1,0 +1,154 @@
+/* styles.css */
+
+/* Fonte personalizada */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.navbar {
+    background-size: cover; /* Ajusta a imagem para cobrir toda a navbar */
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    background-position: center center; /* Centraliza a imagem na navbar */
+    height: 90px;
+}
+/* Remove o espaçamento em excesso na parte superior */
+.container {
+    background-color: white; /* Mude a cor de fundo para branco */
+    border: none; /* Remova qualquer borda, se houver */
+}
+
+/* Personalização de botões */
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #0056b3;
+}
+
+/* Ajusta o espaçamento entre os itens do menu de navegação */
+.navbar-nav .nav-item {
+    margin-left: 15px;
+}
+
+/* Centraliza o conteúdo da página */
+.center-content {
+    margin-top: 50px;
+}
+
+/* Estilização personalizada para títulos */
+h2 {
+    color: #343a40;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Estilo para as imagens laterais */
+.lateral-image {
+    background-image: url('/static/images/background5.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 200px; /* Ajuste a largura conforme necessário */
+    min-height: calc(100vh - 90px); /* Altura mínima considerando a altura da navbar */
+}.lateral-image {
+    background-image: url('/static/images/lateral.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 200px; /* Ajuste a largura conforme necessário */
+    min-height: 100vh; /* Altura total da janela */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+.left-image {
+    left: 0;
+    transform: scaleX(-1); /* Espelha horizontalmente a imagem da esquerda */
+}
+.page-container {
+    display: flex;
+}
+
+
+.right-image {
+    right: 0;
+}
+
+.lateral-image {
+    background-image: url('/static/images/background5.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 200px; /* Ajuste a largura conforme necessário */
+    min-height: calc(100vh - 90px); /* Altura mínima considerando a altura da navbar */
+}
+
+.content-container {
+    flex: 1; /* Ocupa o espaço restante */
+}
+
+
+.container.center-content {
+    margin-top: 20px;
+}
+
+.jumbotron {
+    background-color: white; /* Deixa o fundo branco */
+    padding: 2rem 1rem; /* Ajuste o padding conforme necessário */
+    border-radius: 0; /* Remove qualquer borda arredondada, se houver */
+}
+
+/* Estilos para o contêiner dos botões no topo */
+/* Estilo para os botões no topo */
+.top-buttons {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Espaçamento entre os itens */
+    position: fixed;
+    top: 5px;
+    left: 210px;
+    z-index: 2;
+}
+
+.button-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: inherit;
+    color: #000; /* Cor inicial */
+    margin: 0;
+    padding: 10px 15px; /* Adiciona espaçamento */
+    cursor: pointer;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    text-decoration: none;
+    display: inline-block; /* Força o botão e o link a se comportarem de forma similar */
+    background: none;
+    border: none;
+}
+
+.button-text:hover {
+    color: #000; /* Muda a cor ao passar o mouse */
+    text-decoration: underline; /* Adiciona o sublinhado ao passar o mouse */
+}
+
+/* Estilo para o botão de logout para garantir que se comporte como um link */
+button.button-text {
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+button.button-text:hover {
+    text-decoration: underline;
+}

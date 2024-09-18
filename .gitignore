@@ -1,8 +1,9 @@
-# Arquivos/Diretórios a serem ignorados
-
 # Ambiente virtual
+.venv/
 venv/
 env/
+
+# Compilados Python
 *.pyc
 __pycache__/
 
@@ -16,15 +17,15 @@ db.sqlite3
 # Configurações locais
 *.env
 
-# Arquivos de migração
+# Arquivos de migração (exceto o __init__.py)
 **/migrations/*
 !**/migrations/__init__.py
 
 # Arquivos estáticos gerados
 staticfiles/
 
-# Arquivos de cache
+# Arquivos de cache e logs
 *.log
 
-# Chave secreta do Django (se estiver em settings.py)
+# Configurações sensíveis (caso a chave secreta do Django esteja no settings.py)
 mysite/settings.py

@@ -10,15 +10,16 @@
     {% if user.is_authenticated %}
         <p class="lead">Olá, {{ user.username }}!</p>
         <p>
-            <a href="{% url 'minhas_paginas' %}" class="btn btn-primary btn-lg">Ver Minhas Páginas</a>
-            <a href="{% url 'criar_pagina_produto' %}" class="btn btn-success btn-lg">Criar Nova Página de Produtos</a>
+            <a href="{% url 'minhas_paginas' %}" class="button-text btn-lg" style="background-color: #8a908a;">Ver Minhas Páginas</a>
+            <a href="{% url 'criar_pagina_produto' %}" class="button-text btn-lg" style="background-color: #8a908a;">Criar Nova Página de Produtos</a>
         </p>
     {% else %}
         <p class="lead">Você não está logado.</p>
         <p>
-            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
-            <a href="{% url 'register' %}" class="btn btn-success btn-lg">Registrar</a>
+            <a href="{% url 'login' %}" class="button-text btn-lg" style="background-color: #8a908a;">Login</a>
+            <a href="{% url 'register' %}" class="button-text btn-lg" style="background-color: #8a908a;">Registrar</a>
         </p>
     {% endif %}
 </div>
 {% endblock %}
+

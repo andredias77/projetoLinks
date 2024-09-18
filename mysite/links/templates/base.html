@@ -1,90 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %} <!-- Carrega as tags estáticas do Django -->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Outros meta tags e links -->
     <title>{% block title %}Meu Site{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Ajusta o espaçamento da navbar */
-        .navbar {
-            margin-bottom: 20px;
-        }
-
-        /* Remove o espaçamento em excesso na parte superior */
-        .container {
-            padding-top: 20px;
-        }
-
-        /* Personalização de botões */
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-custom:hover {
-            background-color: #0056b3;
-        }
-
-        /* Ajusta o espaçamento entre os itens do menu de navegação */
-        .navbar-nav .nav-item {
-            margin-left: 15px;
-        }
-
-        /* Centraliza o conteúdo da página */
-        .center-content {
-            margin-top: 50px;
-        }
-
-        /* Estilização personalizada para títulos */
-        h2 {
-            color: #343a40;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-    </style>
+    <!-- CSS Externo -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Meu Site</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'minhas_paginas' %}">Minhas Páginas</a>
-                </li>
-                <li class="nav-item">
-                    <form method="POST" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button type="submit" class="nav-link btn btn-link" style="color: #ccc;">Sair</button>
-                    </form>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Registrar</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- Conteúdo da navbar -->
     </nav>
-    
 
-<div class="container center-content">
-    {% block content %}
-    {% endblock %}
-</div>
+    <!-- Contêiner principal -->
+    <div class="page-container">
+        <!-- Imagem lateral esquerda -->
+        <div class="lateral-image left-image"></div>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Contêiner para os botões -->
+        <div class="top-buttons">
+            <a href="{% url 'home' %}" class="button-text">Página Inicial</a>
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="button-text" style="border: none; background: none; cursor: pointer;">Sair</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}" class="button-text">Login</a>
+            {% endif %}
+        </div>
+        
+
+        <!-- Conteúdo principal -->
+        <div class="content-container">
+            <div class="container center-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <!-- Imagem lateral direita -->
+        <div class="lateral-image right-image"></div>
+    </div>
+
+    <!-- Scripts JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Outros scripts -->
 </body>
 </html>
