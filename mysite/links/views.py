@@ -96,7 +96,7 @@ def excluir_link(request, link_id):
         return redirect('editar_pagina_produto', pagina_id=pagina.id)
     return render(request, 'confirmar_exclusao_link.html', {'link': link})
 
-
+#
 @login_required
 def gerar_qrcode(request, pagina_id):
     # Obter a página do produto
