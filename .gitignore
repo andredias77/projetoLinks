@@ -21,9 +21,6 @@ db.sqlite3
 **/migrations/*
 !**/migrations/__init__.py
 
-# Arquivos estáticos gerados
-staticfiles/
-
 # Arquivos de cache e logs
 *.log
 
